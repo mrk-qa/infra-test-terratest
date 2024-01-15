@@ -5,6 +5,4 @@ azure-key*
 *.tfvars
 *.tfstate*
 package.json
-go.sum
-go.mod
 tests/reports/*.xml
