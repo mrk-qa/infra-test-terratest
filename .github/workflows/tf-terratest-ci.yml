@@ -20,27 +20,21 @@ jobs:
       - uses: actions/setup-go@v4
         with:
           go-version: '>=1.21.6'
+      
+      - name: Setup Go environment and modules
+        run: |
+          export PATH=$PATH:/usr/bin/
+          cd tests
+          go mod init terratest
+          go mod tidy
+          go get -u github.com/gruntwork-io/terratest/modules/terraform
+          go get -u github.com/stretchr/testify/assert
+          cd /usr/bin/
+          go get -u github.com/jstemmer/go-junit-report/v2@latest
           
-      - run: echo "Setting up Go environment..."
-      - run: go version
-      - run: cd tests
-      - run: go mod init terratest
-      - run: go mod tidy
-      - run: go get -u github.com/gruntwork-io/terratest/modules/terraform
-      - run: go get -u github.com/stretchr/testify/assert
-      - run: cd /usr/bin/
-      - run: go get -u github.com/jstemmer/go-junit-report
-      - run: go get -u github.com/jstemmer/go-junit-report
-      - run: echo $GITHUB_WORKSPACE
-      - run: cd $GITHUB_WORKSPACE
-      - run: cd tests
-      # - run: echo "Setting up Terraform environment..."
-      # - run: sudo apt-get update && sudo apt-get install -y gnupg software-properties-common
-      # - run: wget -O- https://apt.releases.hashicorp.com/gpg | gpg --dearmor | sudo tee /usr/share/keyrings/hashicorp-archive-keyring.gpg
-      # - run: gpg --no-default-keyring --keyring /usr/share/keyrings/hashicorp-archive-keyring.gpg --fingerprint
-      # - run: echo "deb [signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
-      # - run: sudo apt update
-      - run: terraform version
-      - run: echo "Running Terratest..."
-      - run: go test -v -timeout 30m | go-junit-report -out reports/report_junit.xml
+      - name: Run tests
+        run: |
+          cd $GITHUB_WORKSPACE/tests
+          go test -v -timeout 30m | go-junit-report -out reports/report_junit.xml
+          
       
