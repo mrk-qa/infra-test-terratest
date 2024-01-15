@@ -1,0 +1,10 @@
+aws-key*
+azure-key*
+.terraform*
+*.out
+*.tfvars
+*.tfstate*
+package.json
+go.sum
+go.mod
+tests/reports/*.xml
