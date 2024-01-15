@@ -21,7 +21,7 @@ jobs:
         with:
           go-version: '>=1.21.6'
       
-      - name: Setup Go environment and modules
+      - name: Setup Go
         run: |
           export PATH=$PATH:/usr/bin/
           cd tests
@@ -37,4 +37,8 @@ jobs:
           cd $GITHUB_WORKSPACE/tests
           go test -v -timeout 30m | go-junit-report -out reports/report_junit.xml
           
-      
+      - name: Upload test artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results
+          path: reports/report_junit.xml
