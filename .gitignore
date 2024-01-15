@@ -7,3 +7,4 @@ azure-key*
 package.json
 go.sum
 go.mod
+tests/reports/*.xml
