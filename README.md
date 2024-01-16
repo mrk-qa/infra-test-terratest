@@ -5,7 +5,7 @@
 
 ------
 
-## 🔖 Requirements
+## ✅ Requirements
 
 - [Terraform] - v 1.6.6
 - [Golang] - v 1.21.6
