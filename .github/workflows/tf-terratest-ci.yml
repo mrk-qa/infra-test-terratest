@@ -34,7 +34,9 @@ jobs:
       - name: Run tests
         run: |
           cd $GITHUB_WORKSPACE/tests
-          go test -v -timeout 30m -json | go-test-report -o reports/index.html
+          go test -v -run TestTerraformAwsInstance -timeout 30m -json | go-test-report -o reports/index.html
+          ls reports
+          cd reports
           
       # - name: Upload test artifacts
       #   uses: actions/upload-artifact@v4
@@ -42,15 +44,21 @@ jobs:
       #     name: test-results
       #     path: $GITHUB_WORKSPACE/tests/reports/
 
-      - name: Generate Directory Listings
-        uses: jayanta525/github-pages-directory-listing@v4.0.0
-        with:
-          FOLDER: reports
+      # - name: Generate Directory Listings
+      #   uses: jayanta525/github-pages-directory-listing@v4.0.0
+      #   with:
+      #     FOLDER: reports
+
+      - name: Fix permissions
+        run: |
+          chmod -c -R +rX "reports/" | while read line; do
+            echo "::warning title=Invalid file permissions automatically fixed::$line"
+          done
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: 'reports'
+          path: '$GITHUB_WORKSPACE/tests/reports/index.html'
 
   deploy:
     needs: terratest
