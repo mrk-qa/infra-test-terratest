@@ -5,6 +5,16 @@
 
 ------
 
+## 🔖 Requirements
+
+- [Terraform] - v 1.6.6
+- [Golang] - v 1.21.6
+- [Terratest] - v 0.46.9
+- [hashicorp/aws] using in db - v >= 4.61.0, < 5.0.0
+- [hashicorp/aws] using in s3 - v 5.16.0
+- [hashicorp/aws] using in vm - v 5.31.0
+- [go-test-report] - v 0.9.3
+
 ```
 Project structure:
 resources
@@ -22,3 +32,11 @@ tests
   |-- *s3_test.go
   |-- *vm_test.go
 ```
+
+## 🔮 Support this project  
+
+If you want to support this project, leave a ⭐.  
+
+---  
+
+Made with 💙 &nbsp;by Marco Antonio 👋 &nbsp; [My LinkedIn](https://www.linkedin.com/in/mrk-silva/)  
