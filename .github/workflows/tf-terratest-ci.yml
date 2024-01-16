@@ -57,7 +57,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
-          path: 'reports/'
+          path: './tests/reports/'
 
   deploy:
     needs: terratest
