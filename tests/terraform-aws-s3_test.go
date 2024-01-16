@@ -21,7 +21,7 @@ func TestTerraformAwsS3(t *testing.T) {
 	awsRegion := aws.GetRandomStableRegion(t, nil, nil)
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		TerraformDir: "../s3/",
+		TerraformDir: "../resources/s3/",
 
 		Vars: map[string]interface{}{
 			"tag_bucket_name":        expectedName,

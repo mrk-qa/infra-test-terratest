@@ -24,7 +24,7 @@ func TestTerraformAwsRds(t *testing.T) {
 	instanceType := aws.GetRecommendedRdsInstanceType(t, awsRegion, "mysql", engineVersion, []string{"db.t2.micro"})
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		TerraformDir: "../db/",
+		TerraformDir: "../resources/db/",
 
 		Vars: map[string]interface{}{
 			"name":                 expectedName,

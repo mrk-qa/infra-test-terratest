@@ -14,7 +14,7 @@ func TestTerraformAwsInstance(t *testing.T) {
 	t.Parallel()
 
 	terraformOptions := terraform.WithDefaultRetryableErrors(t, &terraform.Options{
-		TerraformDir: "../vm/",
+		TerraformDir: "../resources/vm/",
 	})
 
 	defer terraform.Destroy(t, terraformOptions)
