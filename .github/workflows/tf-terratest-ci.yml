@@ -29,16 +29,41 @@ jobs:
           go install github.com/gruntwork-io/terratest/modules/terraform
           go install github.com/stretchr/testify/assert
           cd /usr/bin/
-          go install github.com/jstemmer/go-junit-report/v2@latest
+          go install github.com/vakenbolt/go-test-report@v0.9.3
           
       - name: Run tests
         run: |
           cd $GITHUB_WORKSPACE/tests
-          go test -v -timeout 30m | go-junit-report -out reports/report_junit.xml
-          ls reports/
+          go test -v -timeout 30m -json | go-test-report -o reports/index.html
           
-      - name: Upload test artifacts
-        uses: actions/upload-artifact@v4
+      # - name: Upload test artifacts
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: test-results
+      #     path: $GITHUB_WORKSPACE/tests/reports/
+
+      - name: Generate Directory Listings
+        uses: jayanta525/github-pages-directory-listing@v4.0.0
         with:
-          name: test-results
-          path: $GITHUB_WORKSPACE/tests/reports/report_junit.xml
+          FOLDER: reports
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: 'reports'
+
+  deploy:
+    needs: terratest
+    permissions:
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+
+    runs-on: ubuntu-latest
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v3
