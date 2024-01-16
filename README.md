@@ -15,7 +15,7 @@
 - [hashicorp/aws] using in vm - v 5.31.0
 - [go-test-report] - v 0.9.3
 
-## 📑 Project structure
+## 📑 Test Project Structure
 
 ```
 resources
