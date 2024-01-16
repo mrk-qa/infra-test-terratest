@@ -1,4 +1,4 @@
-name: 1 - [TERRATEST] Running Terratest
+name: Running Terratest and Deploy Report Github Pages
 
 on: push
 
@@ -36,30 +36,15 @@ jobs:
       - name: Run tests
         run: |
           cd $GITHUB_WORKSPACE/tests
-          go test -v -run TestTerraformAwsInstance -timeout 30m -json | go-test-report -o reports/index.html
-          ls reports
-          
-      # - name: Upload test artifacts
-      #   uses: actions/upload-artifact@v4
-      #   with:
-      #     name: test-results
-      #     path: $GITHUB_WORKSPACE/tests/reports/
-
-      # - name: Generate Directory Listings
-      #   uses: jayanta525/github-pages-directory-listing@v4.0.0
-      #   with:
-      #     FOLDER: reports
-
-      - name: Verify directory listings
-        run: |
-          ls $GITHUB_WORKSPACE/tests/reports
+          go test -v -timeout 30m -json | go-test-report -o reports/index.html -t Report_Terratest_Infrastructure_provisioned_by_Terraform -s "32" -g 1
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: './tests/reports/'
 
   deploy:
+    name: Deploy to Github Pages
     needs: terratest
     permissions:
       pages: write
