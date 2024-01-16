@@ -9,7 +9,7 @@ env:
 
 jobs:
   terratest:
-    name: Terratest
+    name: terratest
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -44,7 +44,6 @@ jobs:
           path: './tests/reports/'
 
   deploy:
-    name: Deploy to Github Pages
     needs: terratest
     permissions:
       pages: write
