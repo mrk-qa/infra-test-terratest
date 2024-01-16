@@ -20,6 +20,8 @@ jobs:
       - uses: actions/setup-go@v4
         with:
           go-version: '>=1.21.6'
+          cache-dependency-path: |
+            tests/go.sum
       
       - name: Setup Go
         run: |
@@ -48,11 +50,11 @@ jobs:
       #   with:
       #     FOLDER: reports
 
-      - name: Fix permissions
-        run: |
-          chmod -c -R +rX "reports/" | while read line; do
-            echo "::warning title=Invalid file permissions automatically fixed::$line"
-          done
+      # - name: Fix permissions
+      #   run: |
+      #     chmod -c -R +rX "reports/" | while read line; do
+      #       echo "::warning title=Invalid file permissions automatically fixed::$line"
+      #     done
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
