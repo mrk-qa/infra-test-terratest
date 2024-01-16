@@ -15,8 +15,9 @@
 - [hashicorp/aws] using in vm - v 5.31.0
 - [go-test-report] - v 0.9.3
 
+## 📑 Project structure
+
 ```
-Project structure:
 resources
   |-- db
   |   |-- terraform code
@@ -39,4 +40,4 @@ If you want to support this project, leave a ⭐.
 
 ---  
 
-Made with 💙 &nbsp;by Marco Antonio 👋 &nbsp; [My LinkedIn](https://www.linkedin.com/in/mrk-silva/)  
+Made with 💙 &nbsp;by Marco Antonio 👋 &nbsp; [Meu LinkedIn](https://www.linkedin.com/in/mrk-silva/)  
