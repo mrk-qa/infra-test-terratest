@@ -36,7 +36,6 @@ jobs:
           cd $GITHUB_WORKSPACE/tests
           go test -v -run TestTerraformAwsInstance -timeout 30m -json | go-test-report -o reports/index.html
           ls reports
-          cd reports
           
       # - name: Upload test artifacts
       #   uses: actions/upload-artifact@v4
