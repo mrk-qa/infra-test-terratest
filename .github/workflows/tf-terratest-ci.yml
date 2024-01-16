@@ -50,11 +50,9 @@ jobs:
       #   with:
       #     FOLDER: reports
 
-      # - name: Fix permissions
-      #   run: |
-      #     chmod -c -R +rX "reports/" | while read line; do
-      #       echo "::warning title=Invalid file permissions automatically fixed::$line"
-      #     done
+      - name: Verify directory listings
+        run: |
+          ls $GITHUB_WORKSPACE/tests/reports
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
