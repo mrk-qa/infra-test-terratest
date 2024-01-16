@@ -6,3 +6,4 @@ azure-key*
 *.tfstate*
 package.json
 tests/reports/*.xml
+tests/reports/*.html
