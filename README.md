@@ -7,9 +7,9 @@
 
 ## ✅ Requirements
 
-- [Terraform] - v 1.6.6
-- [Golang] - v 1.21.6
-- [Terratest] - v 0.46.9
+- [terraform] - v 1.6.6
+- [golang] - v 1.21.6
+- [terratest] - v 0.46.9
 - [hashicorp/aws] using in db - v >= 4.61.0, < 5.0.0
 - [hashicorp/aws] using in s3 - v 5.16.0
 - [hashicorp/aws] using in vm - v 5.31.0
