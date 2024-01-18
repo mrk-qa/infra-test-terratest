@@ -11,6 +11,7 @@
 - [golang] - v 1.21.6
 - [terratest] - v 0.46.9
 - [hashicorp/aws] using in db - v >= 4.61.0, < 5.0.0
+- [hashicorp/aws] using in lambda - v 5.31.0
 - [hashicorp/aws] using in s3 - v 5.16.0
 - [hashicorp/aws] using in vm - v 5.31.0
 - [go-test-report] - v 0.9.3
@@ -21,6 +22,8 @@
 resources
   |-- db
   |   |-- terraform code
+  |-- lambda
+  |   |-- terraform code
   |-- s3
   |   |-- terraform code
   |-- vm
@@ -29,7 +32,8 @@ resources
 tests
   |-- reports
   |   |-- index.html
-  |-- *db_test.go
+  |-- *lambda_test.go
+  |-- *rds_test.go
   |-- *s3_test.go
   |-- *vm_test.go
 ```
