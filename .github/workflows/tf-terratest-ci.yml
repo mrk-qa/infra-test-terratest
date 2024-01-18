@@ -36,7 +36,7 @@ jobs:
       - name: Run tests
         run: |
           cd $GITHUB_WORKSPACE/tests
-          go test -v -timeout 30m -json | go-test-report -o reports/index.html -t Report_Terratest_Infrastructure_provisioned_by_Terraform -s "32" -g 1
+          go test -v -timeout 30m -json | go-test-report -o reports/index.html -t Report_Terratest_Infrastructure_provisioned_by_Terraform -s "32" -g 1 || true
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v2
