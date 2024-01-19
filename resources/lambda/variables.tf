@@ -4,14 +4,6 @@ variable "region" {
   default     = "us-east-1"
 }
 
-data "aws_caller_identity" "main" {}
-
-variable "aws_account_id" {
-  description = "Region of resources"
-  type        = string
-  default     = data.aws_caller_identity.main.account_id
-}
-
 variable "function_name" {
   description = "The name of the function to provision"
   type        = string
