@@ -25,7 +25,7 @@ jobs:
           cache-dependency-path: |
             tests/go.sum
       
-      - name: Setup Go
+      - name: setup terratest
         run: |
           export PATH=$PATH:/usr/bin/
           cd tests
@@ -35,12 +35,12 @@ jobs:
           cd /usr/bin/
           go install github.com/vakenbolt/go-test-report@v0.9.3
           
-      - name: Run tests
+      - name: run tests
         run: |
           cd $GITHUB_WORKSPACE/tests
           go test -v -timeout 30m -json | go-test-report -o reports/index.html -t Report_Terratest_Infrastructure_provisioned_by_Terraform -s "32" -g 1 || true
 
-      - name: Upload artifact
+      - name: upload artifact
         uses: actions/upload-pages-artifact@v2
         with:
           path: './tests/reports/'
