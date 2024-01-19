@@ -75,8 +75,4 @@ func TestTerraformEc2Attributes(t *testing.T) {
 
 	AvailabilityZone := describeInstancesOutput.Reservations[0].Instances[0].Placement.AvailabilityZone
 	assert.Equal(t, "us-east-1f", *AvailabilityZone, "A AZ da instância EC2 não está correta")
-
-	// Validações da chave associada a EC2
-	keyName := describeInstancesOutput.Reservations[0].Instances[0].KeyName
-	assert.Equal(t, "aws-key-infra-test-terratest", *keyName, "A chave da instância EC2 não está correta")
 }

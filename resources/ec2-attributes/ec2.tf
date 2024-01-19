@@ -1,8 +1,3 @@
-resource "aws_key_pair" "key" {
-  key_name   = var.key_pair_name_aws
-  public_key = var.aws_key_pub
-}
-
 resource "aws_instance" "vm" {
   ami                         = var.ami_vm
   instance_type               = var.instance_type_vm
