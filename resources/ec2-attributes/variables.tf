@@ -1,15 +1,3 @@
-variable "aws_key_pub" {
-  description = "Chave pública para a VM na AWS"
-  type        = string
-  sensitive   = true
-}
-
-variable "key_pair_name_aws" {
-  description = "Nome da key pair usada na AWS"
-  type        = string
-  default     = "aws-key-infra-test-terratest"
-}
-
 variable "ami_vm" {
   description = "AMI to be used to run the VM instance"
   type        = string
