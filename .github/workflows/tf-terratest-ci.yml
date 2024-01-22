@@ -22,16 +22,12 @@ jobs:
       - uses: actions/setup-go@v4
         with:
           go-version: '>=1.21.6'
-          cache-dependency-path: |
-            tests/go.sum
       
       - name: setup terratest
         run: |
           export PATH=$PATH:/usr/bin/
           cd tests
           go mod download
-          go install github.com/gruntwork-io/terratest/modules/terraform
-          go install github.com/stretchr/testify/assert
           cd /usr/bin/
           go install github.com/vakenbolt/go-test-report@v0.9.3
           
