@@ -26,19 +26,14 @@ func TestTerraformAwsInstance(t *testing.T) {
 	terraform.InitAndApply(t, terraformOptions)
 
 	publicIp := terraform.Output(t, terraformOptions, "public_ip")
+	instanceID := terraform.Output(t, terraformOptions, "instance_id")
 
 	url := fmt.Sprintf("http://%s:80", publicIp)
 	http_helper.HttpGetWithRetry(t, url, nil, 200, "Hello, Marco!", 30, 5*time.Second)
 
-	filters := map[string][]string{
-		"tag:Name": {"terraform-with-terratest"},
-	}
+	getEc2Instance := aws.GetPublicIpOfEc2Instance(t, instanceID, "us-east-1")
 
-	instanceIDs := aws.GetEc2InstanceIdsByFilters(t, "us-east-1", filters)
-
-	assert.NotEmpty(t, instanceIDs, "Nenhuma instância EC2 encontrada com os filtros fornecidos")
-
-	instanceID := instanceIDs[0]
+	assert.NotEmpty(t, getEc2Instance, "Nenhuma instância EC2 encontrada com os filtros fornecidos")
 
 	sess := session.Must(session.NewSessionWithOptions(session.Options{
 		SharedConfigState: session.SharedConfigEnable,
