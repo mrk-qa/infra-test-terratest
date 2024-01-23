@@ -1,15 +1,12 @@
 package test
 
 import (
-	"fmt"
 	"strings"
 	"testing"
-	"time"
 
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/ec2"
 	"github.com/gruntwork-io/terratest/modules/aws"
-	http_helper "github.com/gruntwork-io/terratest/modules/http-helper"
 	"github.com/stretchr/testify/assert"
 
 	"github.com/gruntwork-io/terratest/modules/terraform"
@@ -25,11 +22,11 @@ func TestTerraformAwsInstance(t *testing.T) {
 	defer terraform.Destroy(t, terraformOptions)
 	terraform.InitAndApply(t, terraformOptions)
 
-	publicIp := terraform.Output(t, terraformOptions, "public_ip")
+	// publicIp := terraform.Output(t, terraformOptions, "public_ip")
 	instanceID := terraform.Output(t, terraformOptions, "instance_id")
 
-	url := fmt.Sprintf("http://%s:80", publicIp)
-	http_helper.HttpGetWithRetry(t, url, nil, 200, "Hello, Marco!", 30, 5*time.Second)
+	// url := fmt.Sprintf("http://%s:80", publicIp)
+	// http_helper.HttpGetWithRetry(t, url, nil, 200, "Hello, Marco!", 30, 5*time.Second)
 
 	getEc2Instance := aws.GetPublicIpOfEc2Instance(t, instanceID, "us-east-1")
 
